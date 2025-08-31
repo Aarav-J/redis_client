@@ -48,13 +48,17 @@ void CLI::run() {
         //  }
 
         std::string command = CommandHandler::buildRESPcommand(args); 
+        // std::cout << "Sending: " << std::endl << command << std::endl; 
         if (!redisClient.sendCommand(command)) { 
             std::cerr << "(error) failed to send command.\n"; 
             break; 
         }
-        // Parse and print response
+        // Parse and print response 
+        std::string response = ResponseParser::parseResponse(redisClient.getSocketFD()); 
+        std::cout << response << "\n"; 
 
 
     }
 
+    redisClient.disconnect(); 
 }

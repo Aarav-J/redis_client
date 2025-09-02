@@ -42,9 +42,17 @@ void CLI::run(const std::vector<std::string>& commandArgs) {
             break; 
          } 
 
-         if(line == "help") { 
-            std::cout << "Displaying Help\n"; 
-         }
+            if(line == "help") { 
+                std::cout << "\nAvailable commands:\n";
+                std::cout << "  help         Show this help message\n";
+                std::cout << "  quit/exit    Exit the CLI\n";
+                std::cout << "  Any Redis command (e.g., PING, SET, GET, LRANGE, etc.)\n";
+                std::cout << "\nExamples:\n";
+                std::cout << "  SET mykey myvalue\n";
+                std::cout << "  GET mykey\n";
+                std::cout << "  LRANGE mylist 0 -1\n";
+                continue;
+            }
 
          //Split command into tokens 
          std::vector<std::string> args = CommandHandler::splitArgs(line); 
